@@ -35,6 +35,15 @@ venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
+Then, run testcase:
+
+
+
+```
+serverless offline --stage local
+python -m pytest src/tests --cov='src/blueprints' -p no:warnings  (Other terminal)
+```
+
 Then, run your app:
 
 ```
