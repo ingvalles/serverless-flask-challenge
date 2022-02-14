@@ -61,10 +61,11 @@ curl --location --request POST 'http://localhost:5000/tribal/credit/check' \
 }'
 
 ## Code http
-
+```
 http   code      message
 200    TRI0002   AUTHORIZED
 200    TRI0003   REJECTED
 400    TRI0020   SALES_AGENT_WILL_CONTACT
 422    TRI0001   INVALID_REQUEST
 429    TRI0010   TOO_MANY_REQUESTS          
+```
