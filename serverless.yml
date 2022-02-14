@@ -53,8 +53,6 @@ custom:
   wsgi:
     app: src.api.intent
     packRequirements: false
-  pythonRequirements:
-    dockerizePip: non-linux
   prune:
     automatic: true
     number: 3
