@@ -35,9 +35,7 @@ venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
-Then, run testcase:
-
-
+Run testcase:
 
 ```
 serverless offline --stage local
