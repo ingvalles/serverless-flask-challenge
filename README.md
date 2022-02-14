@@ -16,10 +16,13 @@ Once the deploy is complete, run `sls info` to get the endpoint:
 ```
 $ sls info
 Service Information
-<snip>
-endpoints:
-  ANY - https://abc6defghi.execute-api.us-east-1.amazonaws.com/dev <-- Endpoint
-  ANY - https://abc6defghi.execute-api.us-east-1.amazonaws.com/dev/{proxy+}
+service: tribal
+stage: local
+region: us-east-1
+stack: tribal-local
+endpoint: POST - https://7gioeqmteh.execute-api.us-east-1.amazonaws.com/local/tribal/credit/check    
+functions:
+  api: tribal-local-api
 ```
 
 Copy paste into your browser, and _voila_!
