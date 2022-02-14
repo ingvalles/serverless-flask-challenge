@@ -1,0 +1,60 @@
+service: ${self:custom.dotenvVars.SERVICE_NAME}
+frameworkVersion: 3
+variablesResolutionMode: 20210326
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'local'}
+  region: ${opt:region, 'us-east-1'}
+  runtime: python3.8  
+  tags:
+    environment: ${self:provider.stage}
+    application: ${self:service}
+    product: tribal
+  deploymentPrefix: tribal-${self:service}-${self:provider.stage}
+  lambdaHashingVersion: 20220214  
+  tracing:
+    lambda: true
+  environment:
+    SERVICE_NAME: ${self:service}
+    SERVICE_STAGE: ${self:provider.stage}
+    SERVICE_ROUTE: ${self:custom.route}
+ 
+package:
+  exclude:
+    - node_modules/**
+    - .idea/**
+    - .requirements/**
+    - venv/**
+    - README.md
+    - package.json
+    - package-lock.json
+    - requirements.txt
+    - requirements-dev.txt
+
+plugins:
+  - serverless-python-requirements
+  - serverless-wsgi
+  - serverless-pseudo-parameters
+  - serverless-prune-plugin
+  - serverless-offline
+
+functions:
+  api:
+    handler: wsgi_handler.handler
+    events:
+      - http:
+          path: /${self:custom.route}/credit/check
+          method: post
+custom:
+  dotenvVars: '${file(configs.js)}'
+  version:  ${opt:alias, self:provider.alias, 'v1'}
+  route: ${self:service}
+  wsgi:
+    app: src.api.intent
+    packRequirements: false
+  pythonRequirements:
+    dockerizePip: non-linux
+  prune:
+    automatic: true
+    number: 3

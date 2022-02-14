@@ -1,0 +1,3 @@
+[flake8]
+exclude = __init__.py,env,venv,node_modules,.serverless,migrations/env.py,serverless_wsgi.py
+max-line-length = 160
