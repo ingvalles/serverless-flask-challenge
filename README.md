@@ -16,13 +16,10 @@ Once the deploy is complete, run `sls info` to get the endpoint:
 ```
 $ sls info
 Service Information
-service: tribal
-stage: local
-region: us-east-1
-stack: tribal-local
-endpoint: POST - https://7gioeqmteh.execute-api.us-east-1.amazonaws.com/local/tribal/credit/check    
-functions:
-  api: tribal-local-api
+<snip>
+endpoints:
+  ANY - https://7gioeqmteh.execute-api.us-east-1.amazonaws.com/local/tribal/credit/check <-- Endpoint
+
 ```
 
 Copy paste into your browser, and _voila_!
@@ -49,9 +46,9 @@ Then, run your app:
 
 ```
 serverless wsgi serve --stage local
- * Running on http://localhost:5000/ (Press CTRL+C to quit)
- * Restarting with stat
  * Debugger is active!
+ * Debugger PIN: 610-125-456
+ * Running on http://localhost:5000/ (Press CTRL+C to quit)
 ```
 
 Navigate to [localhost:5000](http://localhost:5000) to see your app running locally.
